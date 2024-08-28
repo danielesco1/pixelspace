@@ -310,6 +310,7 @@ if __name__ == "__main__":
 
     with gr.Blocks() as demo:
         with gr.Tabs():
+            
             """
             # Original Interface for generating a scene
             with gr.Tab("SF3d"):
@@ -349,24 +350,6 @@ if __name__ == "__main__":
                     label="Examples of Input Images",
                 )
             """
-            # Additional Tab for Video
-            with gr.Tab("Text2Room"):
-                gr.Interface(
-                    fn=process_image,
-                    inputs=[
-                        gr.Image(label="Input Image", sources=["upload", "clipboard"], type="pil"),
-                        gr.Textbox(label="Scene Hallucination Prompt")
-                    ],
-                    
-                    outputs=gr.Model3D(label="Generated Scene"),
-                    allow_flagging="never",
-                    title="Generating a Scene",
-                    description="Hallucinate 3D scenes",
-                    article="",
-                    examples=[
-                        ["/home/descobar/projects/xbase/samples/images/magnific-2navRnauqRDOCHjQlFXO-image-1718724248-1.png", "a suburban street in North Carolina on a bright, sunny day"],
-                    ],
-                )
             
             with gr.Tab("Text2Room"):
                 # Scene generation interface
