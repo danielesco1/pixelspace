@@ -1,11 +1,9 @@
 # Requirements
-numpy==1.26.4
 diffusers
 peft
 Pillow
 transformers
 matplotlib
-accelerate==0.23.0
 opencv-python
 sentencepiece
 protobuf

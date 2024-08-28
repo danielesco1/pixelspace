@@ -310,6 +310,7 @@ if __name__ == "__main__":
 
     with gr.Blocks() as demo:
         with gr.Tabs():
+            """
             # Original Interface for generating a scene
             with gr.Tab("SF3d"):
                 with gr.Row():
@@ -366,7 +367,7 @@ if __name__ == "__main__":
                         ["/home/descobar/projects/xbase/samples/images/magnific-2navRnauqRDOCHjQlFXO-image-1718724248-1.png", "a suburban street in North Carolina on a bright, sunny day"],
                     ],
                 )
-            """
+            
             with gr.Tab("Text2Room"):
                 # Scene generation interface
                 with gr.Column():
