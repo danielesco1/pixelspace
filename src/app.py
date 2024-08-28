@@ -246,29 +246,40 @@ if __name__ == "__main__":
         
         return glb_path
 
-    # Function to process the text2room pipeline
-    def process_text2room(json_data, json_file_name):
+    def process_text2room(json_data, json_file_name, cancel):
         global cancel_flag
-
-        # Save the JSON data to a temporary file
-        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode="w", prefix=json_file_name)
-        json.dump(json.loads(json_data), temp_file, indent=2)
-        temp_file.close()
 
         # Load the default configuration
         config = load_config("src/config/configt2room.json")
-        config["general"]["trajectory_file"] = temp_file.name
+        
+        # Extract the output path from the configuration
+        out_path = config["general"]["out_path"]
+
+        # Create a new folder for JSON files under the output path
+        json_output_path = os.path.join(out_path, "jsons")
+        os.makedirs(json_output_path, exist_ok=True)
+
+        # Save the JSON data to a file with the same name as the input JSON file name
+        json_file_path = os.path.join(json_output_path, f"{json_file_name}.json")
+        with open(json_file_path, 'w') as json_file:
+            json.dump(json.loads(json_data), json_file, indent=2)
+
+        # Update the trajectory file path in the configuration
+        config["general"]["trajectory_file"] = json_file_path
+
+        # Variable to track if initial mesh files were already loaded
+        initial_mesh_loaded = False
 
         # Run the pipeline and get progressive updates
         for latest_image_path, latest_mesh_path in text_to_room.generate_scene(config):
             if cancel_flag:
                 cancel_flag = False  # Reset the flag
                 return None, None  # Early exit
-            
+                
             # Convert the latest PLY file to GLB
             latest_mesh_glb = convert_ply_to_glb(latest_mesh_path)
-            
-            # Yield the latest image and GLB paths to update the Gradio interface
+
+            # Yield the image and the latest mesh
             yield latest_image_path, latest_mesh_glb
 
     # Function to cancel the current run
