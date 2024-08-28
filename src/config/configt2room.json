@@ -1,0 +1,57 @@
+{
+    "pipeline": "text_to_room",
+    "output_path": "output",
+    "general": {
+        "device": "cuda",
+        "exp_name": "full_trajectory",
+        "trajectory_file": "/home/descobar/projects/xbase/external/text2room/model/trajectories/examples/start_room05.json",
+        "models_path": "checkpoints",
+        "out_path": "output/text2room",
+        "input_image_path": null,
+        "n_images": 10,
+        "save_scene_every_nth": 10
+    },
+    "depth": {
+        "iron_depth_type": "scannet",
+        "iron_depth_iters": 20
+    },
+    "projection": {
+        "fov": 55.0,
+        "blur_radius": 0.0
+    },
+    "stable-diffusion": {
+        "prompt": "An opulent interior pool space graced by a towering mural, a tapestry of stratified rock in warm earthy tones, with a textured rug echoing the artful patterns beneath, all under the glow of ambient lighting, framed by a hint of gold reflection—a perfect harmony of nature and luxury,8k",
+        "negative_prompt": "blurry, bad art, blurred, text, watermark, plant, nature",
+        "guidance_scale": 8,
+        "num_inference_steps": 20
+    },
+    "inpaint": {
+        "erode_iters": 1,
+        "dilate_iters": 1,
+        "boundary_thresh": 10,
+        "update_mask_after_improvement": false
+    },
+    "fusion": {
+        "edge_threshold": 0.1,
+        "surface_normal_threshold": 0.1,
+        "faces_per_pixel": 8,
+        "replace_over_inpainted": false,
+        "remove_faces_depth_threshold": 0.1,
+        "clean_mesh_every_nth": 20,
+        "min_triangles_connected": 15000,
+        "poisson_depth": 12,
+        "max_faces_for_poisson": 1000000
+    },
+    "completion": {
+        "n_voxels": 1000,
+        "n_dir": 8,
+        "core_ratio_x": 0.4,
+        "core_ratio_y": 0.4,
+        "core_ratio_z": 0.4,
+        "minimum_completion_pixels": 10000,
+        "min_camera_distance_to_mesh": 0.1,
+        "min_depth_quantil_to_mesh": 2.5,
+        "max_inpaint_ratio": 0.2,
+        "completion_dilate_iters": 8
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "pipeline": "invisible_stitch",
+    "image": "/home/descobar/projects/xbase/samples/images/magnific-2navRnauqRDOCHjQlFXO-image-1718724248-1.png",
+    "prompt": "a calm tropical beach with palm trees and sand, astronauts walking around",
+    "output_path": "output/invisiblestitch/",
+    "out_name": "output_scene.ply",
+    "mode": "360",
+    "seed": 444
+  }
+  

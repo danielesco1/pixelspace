@@ -1,0 +1,42 @@
+{
+    "cpp": {
+        "options": [],
+        "deps": [
+            [
+                "/home/descobar/projects/xbase/external/sf3d/texture_baker.slang",
+                1724025165.3050752
+            ],
+            [
+                "/home/descobar/miniconda3/envs/pixelspace/lib/python3.10/site-packages/slangtorch/bin/slangc",
+                1724021620.2352397
+            ],
+            [
+                "/home/descobar/miniconda3/envs/pixelspace/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
+                1724021620.1852396
+            ]
+        ],
+        "version": "1.2.2",
+        "includePaths": []
+    },
+    "cuda": {
+        "options": [],
+        "deps": [
+            [
+                "/home/descobar/projects/xbase/external/sf3d/texture_baker.slang",
+                1724025165.3050752
+            ],
+            [
+                "/home/descobar/miniconda3/envs/pixelspace/lib/python3.10/site-packages/slangtorch/bin/slangc",
+                1724021620.2352397
+            ],
+            [
+                "/home/descobar/miniconda3/envs/pixelspace/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
+                1724021620.1852396
+            ]
+        ],
+        "version": "1.2.2",
+        "includePaths": []
+    },
+    "moduleName": "_slangtorch_texture_baker_44136fa355b3678a",
+    "moduleBinary": "/home/descobar/projects/xbase/src/../external/sf3d/.slangtorch_cache/texture_baker/44136fa355b3678a/0/_slangtorch_texture_baker_44136fa355b3678a.pyd"
+}

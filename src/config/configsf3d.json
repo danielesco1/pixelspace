@@ -1,0 +1,8 @@
+{
+    "pipeline": "image_to_3d",
+    "model_type": "StableFast3d",
+    "base_model": "stabilityai/stable-fast-3d",
+    "image": "/home/descobar/projects/xbase/samples/images/magnific-2navRnauqRDOCHjQlFXO-image-1718724248-1.png",
+    "random_seed": -1,
+    "output_path": "outputSF3d"
+}

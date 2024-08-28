@@ -1,0 +1,22 @@
+{
+    "pipeline": "eschernet",
+    "image": "/home/descobar/projects/xbase/samples/images/magnific-2navRnauqRDOCHjQlFXO-image-1718724248-1.png",
+    "prompt": "a calm tropical beach with palm trees and sand, astronauts walking around",
+    "output_path": "output/eschernet/",
+    "out_name": "output_scene.ply",
+    "mode": "6DoF",
+    "pretrained_model_name_or_path": "/home/descobar/projects/xbase/external/eschernet/eschernet-6dof",
+    "revision": null,
+    "seed": 42,
+    "resolution": 256,
+    "num_train_epochs": 1,
+    "T_in": 1,
+    "T_out": 1,
+    "guidance_scale": 3.0,
+    "data_dir": ".",
+    "data_type": "GSO25",
+    "cape_type": "6DoF",
+    "output_dir": "output/eschernet",
+    "mixed_precision": null
+       
+  }

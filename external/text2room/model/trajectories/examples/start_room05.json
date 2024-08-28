@@ -1,0 +1,37 @@
+[
+    {
+    "prompt": "photo of a futuristic space made out of blue powdered walls with the ceiling skylight open to the blue sky, plants",
+    "fn_name": "forward_small",
+    "fn_args": {
+        "height":0.0,
+         "rot":0
+    }
+  },
+
+  {
+    "fn_name": "forward_small",
+    "fn_args": {
+        "height":0.0,
+         "rot":30
+    }
+  },
+
+  {
+    "prompt": "a futuristic space made out of blue powdered walls, a blue powdered floor, tropical plants",
+    "fn_name": "rot_left_up_down",
+    "fn_args": {
+        "height":-0.5,
+         "rot": 0
+    }
+  },
+
+  {
+    "prompt": "a futuristic space made out of blue powdered walls, a blue powdered floor, tropical plants",
+    "fn_name": "rot_left_up_down",
+    "fn_args": {
+        "height":0.0,
+         "rot":0
+    }
+  }
+
+]

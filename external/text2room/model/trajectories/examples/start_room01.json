@@ -1,0 +1,18 @@
+[
+    {
+    "prompt": "A room made out of blue powdered walls with the ceiling open to the blue sky, futuristic furniture and plants",
+    "fn_name": "forward",
+    "fn_args": {
+      "height": 0.0,
+      "rot": 0.0
+    }
+  },
+
+  {
+    "fn_name": "rot_left_up_down",
+    "fn_args": {
+      "height": 0.0,
+      "rot": 0.0
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+    {
+    "prompt": "photo of a futuristic space made out of blue powdered walls with the ceiling skylight open to the blue sky, futuristic furniture and plants",
+    "fn_name": "sphere_rot",
+    "fn_args": {
+        "radius":9.0, 
+        "height":0.0,
+         "phi":20.0
+    }
+  },
+
+  {
+    "fn_name": "sphere_rot",
+    "fn_args": {
+        "radius":7.0, 
+        "height":0.5,
+         "phi":20.0
+    }
+  }
+]
