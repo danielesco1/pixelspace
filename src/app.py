@@ -246,12 +246,16 @@ if __name__ == "__main__":
         
         return glb_path
 
-    def process_text2room(json_data, json_file_name, cancel):
+    def process_text2room(json_data, json_file_name, n_images, save_scene_every_nth):
         global cancel_flag
 
         # Load the default configuration
         config = load_config("src/config/configt2room.json")
-        
+
+        # Update the configuration with the new inputs
+        config["general"]["n_images"] = n_images
+        config["general"]["save_scene_every_nth"] = save_scene_every_nth
+
         # Extract the output path from the configuration
         out_path = config["general"]["out_path"]
 
@@ -275,7 +279,7 @@ if __name__ == "__main__":
             if cancel_flag:
                 cancel_flag = False  # Reset the flag
                 return None, None  # Early exit
-                
+
             # Convert the latest PLY file to GLB
             latest_mesh_glb = convert_ply_to_glb(latest_mesh_path)
 
@@ -364,10 +368,14 @@ if __name__ == "__main__":
                     with gr.Row():
                         with gr.Column():
                             latest_image_output = gr.Image(label="Latest Image")
+                            # Add new inputs for n_images and save_scene_every_nth
+                            n_images_input = gr.Number(label="Number of Images", value=10)
+                            save_scene_every_nth_input = gr.Number(label="Save Scene Every Nth Image", value=10)
                         with gr.Column():
                             submit_button = gr.Button("Generate 3D Scene")
                             cancel_button = gr.Button("Cancel")
                             cancel_message = gr.Textbox(label="Status", lines=1, interactive=False)
+                            
 
                 # JSON Generator section within the Text2Room tab
                 with gr.Row():
@@ -381,9 +389,10 @@ if __name__ == "__main__":
                         phi_input = gr.Number(label="Phi", visible=False)
                         tzmax_input = gr.Number(label="Tzmax", visible=False)
                         adaptive_input = gr.Checkbox(label="Adaptive Radius")
-                        function_image = gr.Image(label="Function Preview", visible=True, elem_classes="function-image-small")
+                        function_image = gr.Image(label="Function Preview", visible=True, elem_classes="function-image-small", value=function_inputs["forward"]["image"])
 
                     with gr.Column():
+                        
                         file_name_input = gr.Textbox(label="JSON File Name", value="generated_scene", placeholder="Enter file name without extension")
                         add_button = gr.Button("Add Entry")
                         download_button = gr.Button("Download JSON")
@@ -437,7 +446,7 @@ if __name__ == "__main__":
                 )
 
                 # Button action for scene generation
-                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input], outputs=[latest_image_output, output_3d])
+                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input, n_images_input, save_scene_every_nth_input], outputs=[latest_image_output, output_3d])
 
                 cancel_button.click(fn=cancel_run, inputs=[], outputs=cancel_message)
 
