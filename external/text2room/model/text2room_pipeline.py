@@ -106,12 +106,12 @@ class Text2RoomPipeline(torch.nn.Module):
     def setup_models(self):
         # construct inpainting stable diffusion pipeline
         #self.inpaint_pipe = load_sd_inpaint(self.args)
-        self.inpaint_pipe =load_inpainting(self.args)
+        self.inpaint_pipe = load_inpainting(self.args)
 
         # construct depth model
         self.iron_depth_n_net, self.iron_depth_model = load_iron_depth_model(self.args.iron_depth_type, self.args.iron_depth_iters, self.args.models_path, self.args.device)
         # load refiner model to clean images
-        self.refiner_pipe = load_refiner_model(self.args)
+        #self.refiner_pipe = load_refiner_model(self.args)
         
     def remove_models(self):
         self.inpaint_pipe = None
