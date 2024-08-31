@@ -380,8 +380,8 @@ if __name__ == "__main__":
                         with gr.Column():
                             latest_image_output = gr.Image(label="Latest Image")
                             # Add new inputs for n_images and save_scene_every_nth
-                            n_images_input = gr.Number(label="Number of Images", value=10)
-                            save_scene_every_nth_input = gr.Number(label="Save Scene Every Nth Image", value=10)
+                            n_images_input = gr.Number(label="Number of Images", value=10, interactive=True)
+                            save_scene_every_nth_input = gr.Number(label="Save Scene Every Nth Image", value=10, interactive=True)
                         with gr.Column():
                             submit_button = gr.Button("Generate 3D Scene")
                             cancel_button = gr.Button("Cancel")
@@ -455,9 +455,9 @@ if __name__ == "__main__":
                         latest_image_output
                     ]
                 )
-
+                
                 # Button action for scene generation
-                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input], outputs=[latest_image_output, output_3d, cancel_message])
+                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input,n_images_input,save_scene_every_nth_input  ], outputs=[latest_image_output, output_3d, cancel_message])
 
                 cancel_button.click(fn=cancel_run, inputs=[], outputs=cancel_message)
 
