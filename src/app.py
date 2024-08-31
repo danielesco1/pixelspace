@@ -271,20 +271,31 @@ if __name__ == "__main__":
         # Update the trajectory file path in the configuration
         config["general"]["trajectory_file"] = json_file_path
 
+        # Parse the JSON data to count the total number of trajectories
+        trajectory_data = json.loads(json_data)
+        total_trajectories = len(trajectory_data)
+
         # Variable to track if initial mesh files were already loaded
         initial_mesh_loaded = False
+        completed_trajectories = 0
 
         # Run the pipeline and get progressive updates
         for latest_image_path, latest_mesh_path in text_to_room.generate_scene(config):
             if cancel_flag:
                 cancel_flag = False  # Reset the flag
-                return None, None  # Early exit
+                return None, None, f"Cancelled after {completed_trajectories}/{total_trajectories} trajectories"  # Early exit
 
             # Convert the latest PLY file to GLB
             latest_mesh_glb = convert_ply_to_glb(latest_mesh_path)
 
-            # Yield the image and the latest mesh
-            yield latest_image_path, latest_mesh_glb
+            # Increment the completed trajectories count
+            completed_trajectories += 1
+
+            # Update the status message
+            status_message = f"Completed {completed_trajectories}/{total_trajectories} trajectories"
+
+            # Yield the image, the latest mesh, and the status message
+            yield latest_image_path, latest_mesh_glb, status_message
 
     # Function to cancel the current run
     def cancel_run():
@@ -355,7 +366,7 @@ if __name__ == "__main__":
                 )
             """
             
-            with gr.Tab("Text2Room"):
+            with gr.Tab("pixelspace"):
                 # Scene generation interface
                 with gr.Column():
                     output_3d = gr.Model3D(label="Generated Scene",
@@ -446,7 +457,7 @@ if __name__ == "__main__":
                 )
 
                 # Button action for scene generation
-                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input, n_images_input, save_scene_every_nth_input], outputs=[latest_image_output, output_3d])
+                submit_button.click(fn=process_text2room, inputs=[json_display, file_name_input], outputs=[latest_image_output, output_3d, cancel_message])
 
                 cancel_button.click(fn=cancel_run, inputs=[], outputs=cancel_message)
 
